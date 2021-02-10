@@ -86,9 +86,9 @@
             },
             success:function(response)
             {
-                if(response)
+                if(response)    
                 {
-                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th><th><input type="submit" class="btn btn-danger" onclick="alert(1)"></th></tr>');
+                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th><th><input type="submit" class="btn btn-danger" value="Vymaž" onclick="deleteComment('+response.id+')"></th></tr>');
                     $("#commentForm")[0].reset();
                     $("#commentModal").modal('hide');
                 }

@@ -18,6 +18,7 @@ class CommentController extends Controller
         $comment->article_id = $request->articleID;
         $comment->username = auth()->user()->name;
         $comment->save();
+        $comment->id;
         return response()->json($comment);
         }
 
@@ -29,6 +30,5 @@ class CommentController extends Controller
         return response()->json([
             'success' => 'Comment has been deleted'
         ]);
-    // return back();
      }
 }
