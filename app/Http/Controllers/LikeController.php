@@ -15,14 +15,19 @@ class LikeController extends Controller
 
     public function store(Request $request, Article $article,)
     {
-        dd('hop');
+        if ($article->liked($request->user()))
+        {
+            return response(null, 409);
+        }
+
+
         $article->likes()->create([
             'user_id' => $request->user()->id,
         ]);
 
-        return back;
+        return back();
     }
-    public function destroy(Request $request, Article $post)
+    public function destroy(Request $request, Article $article)
     {
         $request->user()->likes()->where('article_id', $article->id)->delete();
 

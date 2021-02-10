@@ -43,6 +43,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-Route::post('/articles/like/{article}',[LikeController::class, 'store'])->name('article.like');
-//Route::delete('/articles/like/{article}',[LikeController::class, 'destroy'])-> name('article.like');
+Route::post('/articles/{article}/like',[LikeController::class, 'store'])->name('article.like');
+Route::delete('/articles/{article}/like',[LikeController::class, 'destroy'])-> name('article.like');

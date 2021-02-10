@@ -16,6 +16,10 @@ class Article extends Model
         return $this->hasMany('App\Models\comment')->orderBy('created_at','desc');
     }
 
+    public function liked(User $user){
+        return $this->likes->contains('user_id', $user->id);
+    }
+
     public function likes(){
         return $this->hasMany('App\Models\like');
     }

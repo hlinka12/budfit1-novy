@@ -25,15 +25,19 @@
         {!!Form::close()!!}
     @endif
     <div class="flex items-center">
-                    
-        <form action="/articles/like/{{$article->id}}" method="post">
-            <button type="submit" class="btn btn-primary btn-sm">Páči sa mi to</button>
-        </form>
-
-        <form action="" method="post">
-            <button type="submit" class="btn btn-primary btn-sm">Nepáči sa mi to</button>
-        </form>
-
+        @if (!$article->liked(auth()->user()))
+            
+            <form action="{{route('article.like', $article)}}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-primary btn-sm">Páči sa mi to</button>
+            </form>
+        @else
+            <form action="{{route('article.like', $article)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-primary btn-sm">Nepáči sa mi to</button>
+            </form>
+        @endif
         <small>{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
     </div>
     <div class="card">
