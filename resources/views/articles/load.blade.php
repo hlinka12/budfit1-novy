@@ -29,16 +29,13 @@
             Komentáre <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal">Pridať komentár</a>
             <table class="table table-striped" id="commentTable">
                 @foreach ($article->commentsArticle as $comment)
-                    <tr>
+                    <tr id="sid{{$comment->id}}">
                         <th>{{$comment->username}}</th> 
                         <th>{{$comment->body}}</th>
                         <th>
                         @if (Auth::user()->id == $comment->user_id)
-                            {!!Form::open(['action' => ['App\Http\Controllers\CommentController@destroy'], 'method' => 'DELETE'])!!}
-                                {{Form::text('id', $comment->id, ['class' => 'invisible'])}}
-                                {{Form::submit('Vymaž',['class' => 'btn btn-danger'])}}
-                            {!!Form::close()!!}
-                        @endif
+                            <a href="javascript:void(0)" onclick="deleteComment({{$comment->id}})" class="btn btn-danger">Vymaž</a>
+                        @endif 
                         </th>
                     </tr>
                 @endforeach
@@ -91,13 +88,30 @@
             {
                 if(response)
                 {
-                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th></tr>');
+                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th><th><input type="submit" class="btn btn-danger" onclick="alert(1)"></th></tr>');
                     $("#commentForm")[0].reset();
                     $("#commentModal").modal('hide');
                 }
             }
         });
     });
+</script>
+
+<script>
+   function deleteComment(id)
+   {
+       $.ajax({
+           url: '/load/delete/'+id,
+           type: 'DELETE',
+           data:{
+               _token : $("input[name=_token]").val()
+           },
+           success:function(response)
+           {
+                $('#sid'+id).remove();
+           }
+       });
+   }
 </script>
 @endsection
  

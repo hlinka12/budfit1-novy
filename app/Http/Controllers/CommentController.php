@@ -16,16 +16,19 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->user_id = auth()->user()->id;
         $comment->article_id = $request->articleID;
-        $comment->username = auth()->user()->name ;
+        $comment->username = auth()->user()->name;
         $comment->save();
         return response()->json($comment);
         }
 
 
-     public function destroy(Request $request)
+     public function destroy($id)
     {
-        $comment = comment::find($request->input('id'));
+        $comment = comment::find($id);
         $comment->delete();
-        return back();
+        return response()->json([
+            'success' => 'Comment has been deleted'
+        ]);
+    // return back();
      }
 }

@@ -6,7 +6,8 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+        <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css">

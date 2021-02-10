@@ -32,8 +32,8 @@ Route::resources([
 //    'load'=> CommentController::class,
 //]);
 
-Route::post('load',[CommentController::class, 'store'])->name('comment.add');
-Route::delete('load',[CommentController::class, 'destroy']);
+Route::post('/load/add',[CommentController::class, 'store'])->name('comment.add');
+Route::delete('/load/delete/{id}',[CommentController::class, 'destroy'])->name('comment.delete');
 
 Route::get('/edit/user/',[UserController::class, 'edit']);
 Route::post('/edit/user/',[UserController::class, 'update']);
