@@ -24,6 +24,18 @@
         {{Form::submit('Vymaž',['class' => 'btn btn-danger'])}}
         {!!Form::close()!!}
     @endif
+    <div class="flex items-center">
+                    
+        <form action="/articles/like/{{$article->id}}" method="post">
+            <button type="submit" class="btn btn-primary btn-sm">Páči sa mi to</button>
+        </form>
+
+        <form action="" method="post">
+            <button type="submit" class="btn btn-primary btn-sm">Nepáči sa mi to</button>
+        </form>
+
+        <small>{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
+    </div>
     <div class="card">
         <div class="card-header">
             Komentáre <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal">Pridať komentár</a>
@@ -57,8 +69,7 @@
               @csrf
               <div class="form-group">
                 <label for="comment">Komentár</label>
-                <input type="text"  class="form-control" id="body">
-
+                <textarea id="body" class="form-control" cols="30" rows="10"></textarea>
                 <input type="text" value="{{$article->id}}" class="invisible" id="articleID">
               </div>
               <button type="submit" class="btn btn-dark">Pridaj</button>

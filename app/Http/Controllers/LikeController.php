@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Like;
 use App\Models\Article;
 
 class LikeController extends Controller
 {
-    public function store(Article $article, Request $request)
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
+
+    public function store(Request $request, Article $article,)
     {
         dd('hop');
         $article->likes()->create([
@@ -17,5 +21,11 @@ class LikeController extends Controller
         ]);
 
         return back;
+    }
+    public function destroy(Request $request, Article $post)
+    {
+        $request->user()->likes()->where('article_id', $article->id)->delete();
+
+        return back();
     }
 }
