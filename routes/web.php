@@ -6,6 +6,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LikeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,3 +42,7 @@ Route::post('/edit/user/',[UserController::class, 'update']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('/articles/{article}/like',[LikeController::class, 'store'])->name('article.like');
+//Route::delete('/articles/{article}/like',[LikeController::class, 'destroy'])-> name('article.like');
