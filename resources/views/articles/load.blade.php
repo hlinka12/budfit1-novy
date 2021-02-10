@@ -61,6 +61,8 @@
               <div class="form-group">
                 <label for="comment">Komentár</label>
                 <input type="text"  class="form-control" id="body">
+
+                <input type="text" value="{{$article->id}}" class="invisible" id="articleID">
               </div>
               <button type="submit" class="btn btn-dark">Pridaj</button>
           </form>
@@ -74,6 +76,7 @@
     $("#commentForm").submit(function(e){
         e.preventDefault();
         let body = $("#body").val();
+        let articleID = $("#articleID").val();
         let _token = $("input[name=_token]").val();
 
         $.ajax({
@@ -81,6 +84,7 @@
             type:"POST",
             data:{
                 body:body,
+                articleID:articleID,   
                 _token:_token
             },
             success:function(response)
