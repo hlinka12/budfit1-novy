@@ -88,7 +88,7 @@
             {
                 if(response)    
                 {
-                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th><th><input type="submit" class="btn btn-danger" value="Vymaž" onclick="deleteComment('+response.id+')"></th></tr>');
+                    $("#commentTable").prepend('<tr><th>'+response.username+'</th><th>'+response.body+'</th><th><a href="javascript:void(0)" onclick="deleteComment('+response.id+')" class="btn btn-danger">Vymaž</a></th></tr>');
                     $("#commentForm")[0].reset();
                     $("#commentModal").modal('hide');
                 }
