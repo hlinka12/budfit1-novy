@@ -75,6 +75,12 @@ body{
     .nav-links{
         width: 40%;
     }
+    .vitajte{
+        font-size: 300%;
+    }
+    .vitajte1{
+        font-size: 300%;
+    }
 }
 
 @media screen and (max-width: 900px){
@@ -102,6 +108,13 @@ body{
     }
     .card{
         width: 50%;
+    }
+
+    .vitajte{
+        font-size: 200%;
+    }
+    .vitajte1{
+        font-size: 200%;
     }
 }
 
