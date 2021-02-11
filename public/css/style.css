@@ -8,12 +8,43 @@ nav{
     justify-content: space-around;
     align-items: center;
     min-height: 8vh;
-    background-color: dimgrey;
+    background-color:rgb(32,32,32);
     font-family: 'IBM Plex Serif', serif;
 }
+body{
+    font-family: 'IBM Plex Serif', serif;
+    background-image:url('images/pozadie1.jpeg');
+    background-size: cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    justify-content: center;
+    align-items: center;
+}
+.hero{
+    position: absolute;
+    width: 45%;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+.vitajte{
+    color: black;
+    text-transform: uppercase;
+    font-size: 500%;
+    text-align: center;
+    margin-top: 10%;
+}
+.vitajte1{
+    color: black;
+    text-transform: uppercase;
+    font-size: 500%;
+    text-align: center;
+    margin-top: 40%;
+}
 .meno{
+    color: white;
     letter-spacing: 6px;
-    font-size: 25px;
 }
 .nav-links{
     display: flex;
@@ -22,7 +53,7 @@ nav{
 }
 .nav-links a{
     text-decoration: none;
-    color: black;
+    color: white;
     letter-spacing: 2px;
     font-weight: bold;
 }
@@ -36,7 +67,7 @@ nav{
 .burger div{
     width: 25px;
     height: 3px;
-    background-color: black;
+    background-color: white;
     margin: 5px;
 }
 
@@ -55,7 +86,7 @@ nav{
         right:0px;
         height: 92vh;
         top: 8vh;
-        background-color: dimgrey;
+        background-color: rgb(32,32,32);
         display: flex;
         flex-direction: column;
         align-items: center;
