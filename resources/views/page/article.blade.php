@@ -9,7 +9,7 @@
     <a href="/articles/create" class="btn btn-dark">Vytvor čĺanok</a>
     @if (count($articles) > 0)
         @foreach ($articles as $article)
-            <div class="card bg-light mb-3">
+            <div class="card bg-light mb-3" style="margin-top: 5%">
                 <div class="row">
                     <div class="col-md-2 col-sm-2">
                         <img src="/storage/article_images/{{$article->cover_image}}" alt="" width="200">
@@ -28,7 +28,22 @@
                         <br>
                         <br>
                         <br>
-                        <small style="font-size: 200%">{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
+                        <div class="flex items-center">
+                            @if (!$article->liked(auth()->user()))
+                                
+                                <form action="{{route('article.like', $article)}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary btn-lg">Páči sa mi to</button>
+                                </form>
+                            @else
+                                <form action="{{route('article.like', $article)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-primary btn-lg">Nepáči sa mi to</button>
+                                </form>
+                            @endif
+                            <small style="font-size: 150%">{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
+                        </div>
                     </div>
                 </div>
             </div>

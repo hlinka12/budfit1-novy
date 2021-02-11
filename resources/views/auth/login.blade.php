@@ -1,10 +1,8 @@
 @extends('layouts.layout')
 
-<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 10%">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

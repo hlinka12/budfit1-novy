@@ -21,27 +21,11 @@
     <div style="font-size: 180%">
         {{$article->text}}
     </div>
-    <img src="/storage/article_images/{{$article->cover_image}}" alt="" style="width: 400px">
+    <img src="/storage/article_images/{{$article->cover_image}}" alt="" style="width: 400px;margin-top:2%">
     <br>
-    <div class="flex items-center">
-        @if (!$article->liked(auth()->user()))
-            
-            <form action="{{route('article.like', $article)}}" method="post">
-                @csrf
-                <button type="submit" class="btn btn-primary btn-sm">Páči sa mi to</button>
-            </form>
-        @else
-            <form action="{{route('article.like', $article)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-primary btn-sm">Nepáči sa mi to</button>
-            </form>
-        @endif
-        <small>{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
-    </div>
-    <div class="card">
+    <div class="card" style="margin-top: 5%">
         <div class="card-header">
-            Komentáre <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal">Pridať komentár</a>
+            Hodnotenie <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal" style="float: right">Pridať hodnotenie</a>
             <table class="table table-striped" id="commentTable">
                 @foreach ($article->commentsArticle as $comment)
                     <tr id="sid{{$comment->id}}">
@@ -56,7 +40,7 @@
                 @endforeach
             </table>
         </div>
-    </div>
+    </div>>
     <!-- Button trigger modal -->
 
   <!-- Modal -->
