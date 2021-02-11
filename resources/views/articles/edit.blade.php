@@ -1,7 +1,5 @@
 @extends('layouts.layout')
 
-<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 
 @section('content')
     <h1>Editni článok</h1>
