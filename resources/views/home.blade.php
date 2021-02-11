@@ -16,7 +16,7 @@
                         <a href="/articles/create" class="btn btn-dark" style="margin-top: 1%">Vytvor čĺanok</a>
                         @foreach ($articles as $article)
                             <div class="card bg-light mb-3" style="margin-top: 2%">
-                             <h3 style="margin-top: 2%;margin-left: 2%"><a href="/articles/{{$article->id}}">{{$article->title}}</a></h3>
+                             <h3 style="margin-top: 2%;margin-left: 2%"><a href="/articles/{{$article->id}}" style="text-decoration: none   ">{{$article->title}}</a></h3>
                             <small style="margin-top: 2%;margin-left: 2%">Pridaný {{$article->created_at}}</small>
                             <div >
                              {!!Form::open(['action' => ['App\Http\Controllers\ArticleController@destroy', $article->id], 'method' => 'DELETE'])!!}

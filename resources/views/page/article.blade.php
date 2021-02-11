@@ -6,7 +6,7 @@
     <h1 class="mt-5" style="font-size: 400%">Články</h1>
     <br>
     <br>
-    <a href="/articles/create" class="btn btn-dark">Vytvor čĺanok</a>
+    <a href="/articles/create" class="btn btn-dark btn-lg">Vytvor čĺanok</a>
     @if (count($articles) > 0)
         @foreach ($articles as $article)
             <div class="card bg-light mb-3" style="margin-top: 5%">
@@ -29,6 +29,7 @@
                         <br>
                         <br>
                         <div class="flex items-center">
+                            @auth  
                             @if (!$article->liked(auth()->user()))
                                 
                                 <form action="{{route('article.like', $article)}}" method="post">
@@ -42,6 +43,7 @@
                                     <button type="submit" class="btn btn-primary btn-lg">Nepáči sa mi to</button>
                                 </form>
                             @endif
+                            @endauth    
                             <small style="font-size: 150%">{{$article->likes->count()}} {{Str::plural('like ', $article->likes->count())}}</small>
                         </div>
                     </div>

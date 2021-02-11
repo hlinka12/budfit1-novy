@@ -23,7 +23,7 @@
     </div>
     <img src="/storage/article_images/{{$article->cover_image}}" alt="" style="width: 400px;margin-top:2%">
     <br>
-    <div class="card" style="margin-top: 5%">
+    <div class="card" style="margin-top: 5%" id="tabulaKoment">
         <div class="card-header">
             Hodnotenie <a class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#commentModal" style="float: right">Pridať hodnotenie</a>
             <table class="table table-striped" id="commentTable">

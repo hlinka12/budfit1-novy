@@ -5,7 +5,7 @@
 
 @section('content')
     <h1>Vytvor článok</h1>
-    {!! Form::open(['action' => 'App\Http\Controllers\ArticleController@store', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::open(['action' => 'App\Http\Controllers\ArticleController@store'], 'enctype' => 'multipart/form-data') !!}
     <div class="form-group">
         {{Form::label('title','Názov')}}
         {{Form::text('title','', ['class' => 'form-control', 'placeholder' => 'Názov'])}}

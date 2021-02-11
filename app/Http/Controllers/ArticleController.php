@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Article;
 
 class ArticleController extends Controller
@@ -61,7 +62,7 @@ class ArticleController extends Controller
         $article->cover_image = $fileToStore;
         $article->save();
 
-        return redirect('/articles')->with('success', 'Článok bol vytvorený');
+        return redirect('/articles');
     }
 
     /**
@@ -105,12 +106,23 @@ class ArticleController extends Controller
             'text' => 'required'
         ]);
 
+        if($request->hasFile('cover_image')){
+            $filenameExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameExt, PATHINFO_FILENAME);
+            $ext = $request->file('cover_image')->getClientOriginalExtension();
+            $fileToStore = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('cover_image')->storeAs('public/article_images',$fileToStore);
+        }
+
         $article = Article::find($id);
         $article->title = $request->input('title');
         $article->text = $request->input('text');
+        if($request->hasFile('cover_image')){
+            $article->cover_image = $fileToStore;
+        }
         $article->save();
 
-        return redirect('/articles')->with('success', 'Článok bol aktualizovaný');
+        return redirect('/articles');
     }
 
     /**
@@ -122,6 +134,10 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $article = Article::find($id);
+        if(auth()->user()->id !== $article->user_id){
+            return redirect('/articles')->with('error', 'Nepovolený vstup');
+        }
+        Storage::delete('public/storage/article_images/'.$article->cover_image);
         $article->delete();
         return redirect('/articles')->with('success', 'Článok bol odstránený');
     }
