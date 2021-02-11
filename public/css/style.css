@@ -24,7 +24,7 @@ body{
 }
 .hero{
     position: absolute;
-    width: 45%;
+    width: 50%;
     margin-left: 0px;
     margin-top: 0px;
 }
@@ -41,6 +41,13 @@ body{
     font-size: 500%;
     text-align: center;
     margin-top: 40%;
+}
+.onas{
+    color: black;
+    text-transform: uppercase;
+    font-size: 400%;
+    text-align: center;
+    margin-top: 20%;
 }
 .meno{
     color: white;
@@ -81,6 +88,9 @@ body{
     .vitajte1{
         font-size: 300%;
     }
+    .onas{
+        font-size: 300%;
+    }
 }
 
 @media screen and (max-width: 900px){
@@ -95,7 +105,7 @@ body{
         background-color: rgb(32,32,32);
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: center;    
         width: 40%;
         transform: translateX(200%);
         transition: transform 0.5s ease-in;
@@ -114,6 +124,9 @@ body{
         font-size: 200%;
     }
     .vitajte1{
+        font-size: 200%;
+    }
+    .onas{
         font-size: 200%;
     }
 }

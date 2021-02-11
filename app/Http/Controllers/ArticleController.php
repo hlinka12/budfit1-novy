@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at','desc')->paginate(8);
+        $articles = Article::orderBy('created_at','desc')->paginate(4);
         return view('page.article')->with('articles',$articles);
     }
 
@@ -42,13 +42,23 @@ class ArticleController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'text' => 'required'
+            'text' => 'required',
+            'cover_image' => 'image|nullable|max:1999|required'
         ]);
+
+        if($request->hasFile('cover_image')){
+            $filenameExt = $request->file('cover_image')->getClientOriginalName();
+            $filename = pathinfo($filenameExt, PATHINFO_FILENAME);
+            $ext = $request->file('cover_image')->getClientOriginalExtension();
+            $fileToStore = $filename.'_'.time().'.'.$ext;
+            $path = $request->file('cover_image')->storeAs('public/article_images',$fileToStore);
+        }
 
         $article = new Article;
         $article->title = $request->input('title');
         $article->text = $request->input('text');
         $article->user_id = auth()->user()->id;
+        $article->cover_image = $fileToStore;
         $article->save();
 
         return redirect('/articles')->with('success', 'Článok bol vytvorený');
