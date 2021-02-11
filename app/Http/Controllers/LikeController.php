@@ -12,9 +12,10 @@ class LikeController extends Controller
         $this->middleware(['auth']);
     }
 
-
+    //funkcia store na vytvorenie liku aj s cudzimi klucmi
     public function store(Request $request, Article $article,)
     {
+        // kontrola ci uz nebol prispevok olikovany uzivatelom
         if ($article->liked($request->user()))
         {
             return response(null, 409);
@@ -27,6 +28,7 @@ class LikeController extends Controller
 
         return back();
     }
+    //funkcia destroy na vymazaanie liku z DB
     public function destroy(Request $request, Article $article)
     {
         $request->user()->likes()->where('article_id', $article->id)->delete();

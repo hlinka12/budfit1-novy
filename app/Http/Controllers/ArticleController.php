@@ -39,6 +39,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // Funkcia store na vytvorenie clanku
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -46,14 +47,12 @@ class ArticleController extends Controller
             'text' => 'required',
             'cover_image' => 'image|nullable|max:1999|required'
         ]);
-
-        if($request->hasFile('cover_image')){
-            $filenameExt = $request->file('cover_image')->getClientOriginalName();
-            $filename = pathinfo($filenameExt, PATHINFO_FILENAME);
-            $ext = $request->file('cover_image')->getClientOriginalExtension();
-            $fileToStore = $filename.'_'.time().'.'.$ext;
-            $path = $request->file('cover_image')->storeAs('public/article_images',$fileToStore);
-        }
+            //Ziskanie suboru jeho meno cestu a koncovku a ulozenie do storagu
+        $filenameExt = $request->file('cover_image')->getClientOriginalName();
+        $filename = pathinfo($filenameExt, PATHINFO_FILENAME);
+        $ext = $request->file('cover_image')->getClientOriginalExtension();
+        $fileToStore = $filename.'_'.time().'.'.$ext;
+        $path = $request->file('cover_image')->storeAs('public/article_images',$fileToStore);
 
         $article = new Article;
         $article->title = $request->input('title');
@@ -71,6 +70,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // funkcia show na zobrazenie clanku
     public function show($id)
     {
         $article = Article::find($id);
@@ -83,6 +83,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //funkcia edit co ma hodi na edit page aj s prislusnym clankom
     public function edit($id)
     {
         $article = Article::find($id);  
@@ -99,6 +100,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // funkcia update na zmenu atributov clanku
     public function update(Request $request, $id)
     {
         $this->validate($request,[
@@ -131,6 +133,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //funckcia destroy na vymazanie clanku
     public function destroy($id)
     {
         $article = Article::find($id);
@@ -139,6 +142,6 @@ class ArticleController extends Controller
         }
         Storage::delete('public/storage/article_images/'.$article->cover_image);
         $article->delete();
-        return redirect('/articles')->with('success', 'Článok bol odstránený');
+        return redirect('/articles');
     }
 }

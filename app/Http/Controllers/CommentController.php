@@ -10,6 +10,7 @@ use App\Models\Article;
 
 class CommentController extends Controller
 {
+    //funkcoa store na vytvorenie komentara cez ajax
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -26,7 +27,7 @@ class CommentController extends Controller
         return response()->json($comment);
         }
 
-
+        //funckia destroy na vymazanie komentara z DB
      public function destroy($id)
     {
         $comment = comment::find($id);
