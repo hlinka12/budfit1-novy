@@ -77,6 +77,10 @@ body{
     background-color: white;
     margin: 5px;
 }
+@media screen and (max-width:2000px){
+    .nav-links{
+        width: 40%;
+}
 
 @media screen and (max-width:1400px){
     .nav-links{
@@ -90,6 +94,12 @@ body{
     }
     .onas{
         font-size: 300%;
+    }
+}
+
+@media screen and (max-width:1200px){
+    .nav-links{
+        width: 60%;
     }
 }
 

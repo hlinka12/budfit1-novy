@@ -2,25 +2,27 @@
 
 @section('content')
     
-    <h1>{{$article->title}}</h1>
+    <h1 style="font-size: 400%">{{$article->title}}</h1>
     @if (Auth::user()->id == $article->user_id)  
      <a href="/articles/{{$article->id}}/edit" class="btn btn-dark">Edit</a>
     @endif
-    <hr>
-    <small>Pridal {{$article->user->name}}</small>
-    <hr>
-    <small>{{$article->created_at}}</small>
-    <hr>
-    <div>
-        {{$article->text}}
-    </div>
-    <img src="/storage/article_images/{{$article->cover_image}}" style="width: 400px">
-    <br>
+    <div class="float-right">
     @if (Auth::user()->id == $article->user_id)     
         {!!Form::open(['action' => ['App\Http\Controllers\ArticleController@destroy', $article->id], 'method' => 'DELETE'])!!}
         {{Form::submit('Vymaž',['class' => 'btn btn-danger'])}}
         {!!Form::close()!!}
     @endif
+    </div>
+    <hr>
+    <small style="font-size: 150%">Pridal {{$article->user->name}}</small>
+    <hr>
+    <small style="font-size: 150%">{{$article->created_at}}</small>
+    <hr>
+    <div style="font-size: 180%">
+        {{$article->text}}
+    </div>
+    <img src="/storage/article_images/{{$article->cover_image}}" alt="" style="width: 400px">
+    <br>
     <div class="flex items-center">
         @if (!$article->liked(auth()->user()))
             
@@ -69,7 +71,7 @@
           <form id="commentForm">
               @csrf
               <div class="form-group">
-                <label for="comment">Komentár</label>
+                <label>Komentár</label>
                 <textarea id="body" class="form-control" cols="30" rows="10"></textarea>
                 <input type="text" value="{{$article->id}}" class="invisible" id="articleID">
               </div>

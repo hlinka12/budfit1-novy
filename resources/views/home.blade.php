@@ -1,8 +1,5 @@
 @extends('layouts.layout')
 
-<link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
-<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>  
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -18,12 +15,14 @@
                     @if (count($articles) > 0)
                         <a href="/articles/create" class="btn btn-dark">Vytvor čĺanok</a>
                         @foreach ($articles as $article)
-                            <div class="card">
+                            <div class="card bg-light mb-3">
                              <h3><a href="/articles/{{$article->id}}">{{$article->title}}</a></h3>
                             <small>Pridaný {{$article->created_at}}</small>
+                            <div style="float: right;">
                              {!!Form::open(['action' => ['App\Http\Controllers\ArticleController@destroy', $article->id], 'method' => 'DELETE'])!!}
                                   {{Form::submit('Vymaž',['class' => 'btn btn-danger'])}}
                              {!!Form::close()!!}
+                            </div>
                             </div>
                          @endforeach
                     @else
